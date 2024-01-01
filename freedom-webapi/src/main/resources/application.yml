@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: webapi
+
+freedom:
+  registry:
+    host: localhost
+    name: ${spring.application.name}
+    port: ${server.port}
+    destinationAddress: 127.0.0.1:8888
+    health:
+      heartbeat: true
+    router:
+      type: random
