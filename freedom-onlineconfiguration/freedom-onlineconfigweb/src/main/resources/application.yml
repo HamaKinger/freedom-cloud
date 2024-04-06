@@ -1,0 +1,75 @@
+server:
+  port: 8893
+  servlet:
+    context-path: /freedom-onlineconfigweb
+
+spring:
+  application:
+    name: freedom-onlineconfigweb
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    suffix: .html
+    encoding: UTF-8
+  mvc:
+    servlet:
+      load-on-startup: 1
+    static-path-pattern: /static/**
+    # 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/free-auth?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false&useAffectedRows=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 19970402.com
+    hikari:
+      auto-commit: true
+      #连接超时时长
+      connection-timeout: 60000
+      #最大生命周期，0不过期
+      max-lifetime: 120000
+      #空闲连接超时时长
+      idle-timeout: 60000
+      connection-test-query: select 1
+      maximum-pool-size: 10
+      minimum-idle: 3
+    type: com.zaxxer.hikari.HikariDataSource
+
+#配置mybatis-plus信息
+mybatis-plus:
+  configuration:
+    # 开启下划线转驼峰
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # mapping的路径
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      # 逻辑删除(软删除)
+      logic-delete-value: NOW()
+      logic-not-delete-value: 'NULL'
+  type-aliases-package: com.freedom.**.po
+sa-token:
+  # token 名称（同时也是 cookie 名称）
+  token-name: satoken
+  # token 有效期（单位：秒） 默认30天，-1 代表永久有效
+  timeout: 2592000
+  # token 最低活跃频率（单位：秒），如果 token 超过此时间没有访问系统就会被冻结，默认-1 代表不限制，永不冻结
+  active-timeout: -1
+  # 是否允许同一账号多地同时登录 （为 true 时允许一起登录, 为 false 时新登录挤掉旧登录）
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个 token （为 true 时所有登录共用一个 token, 为 false 时每次登录新建一个 token）
+  is-share: true
+  # token 风格（默认可取值：uuid、simple-uuid、random-32、random-64、random-128、tik）
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: true
+
+freedom:
+  registry:
+    host: localhost
+    name: ${spring.application.name}
+    port: ${server.port}
+    destinationAddress: 127.0.0.1:8888

@@ -25,8 +25,8 @@ public class Registry {
     private String host ;
 
 
-    @Bean
-    public void register(){
+    @Bean(name = "reg")
+    public RegistryServer register(){
         System.setProperty("port",port);
         System.setProperty("host",host);
         RegistryServer registryServer = new RegistryServer();
@@ -36,5 +36,6 @@ public class Registry {
         registryServer.register(serverName,instance);
         HeartbeatManager heartbeatManager = new HeartbeatManager();
         heartbeatManager.start();
+        return registryServer;
     }
 }

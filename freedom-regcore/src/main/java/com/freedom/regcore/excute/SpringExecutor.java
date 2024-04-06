@@ -19,7 +19,6 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.BiConsumer;
 
 /**
  * @author freedom
@@ -70,7 +69,6 @@ public class SpringExecutor extends RegistryServer implements ApplicationContext
     public void getAllServer(){
         ServiceRegistry serviceRegistry = new ServiceRegistryImpl();
         Map<String,List<Instance>> all = serviceRegistry.getAll();
-        log.info("开始缓存：{}",all);
         if(!all.isEmpty()){
             Set<String> keys = all.keySet();
             keys.forEach(key->{

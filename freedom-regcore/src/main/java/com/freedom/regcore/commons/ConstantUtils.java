@@ -2,9 +2,8 @@ package com.freedom.regcore.commons;
 
 import com.alibaba.fastjson.JSONObject;
 import com.freedom.regcore.enums.BalanceEnum;
-import com.freedom.regcore.model.Instance;
 import com.freedom.regcore.utils.LoadBalance;
-import org.apache.commons.lang3.StringUtils;
+import io.micrometer.common.util.StringUtils;
 
 import javax.validation.constraints.NotNull;
 

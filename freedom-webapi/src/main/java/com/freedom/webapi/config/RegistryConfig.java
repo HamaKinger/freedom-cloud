@@ -24,7 +24,7 @@ public class RegistryConfig {
     private String destinationAddress;
     @Bean
     public SpringExecutor registryInit(){
-        System.setProperty("freedom.config.host",host);
+        System.setProperty("freedom.config.host",destinationAddress);
         SpringExecutor springServer = new SpringExecutor();
         springServer.setHost(host);
         springServer.setName(name);

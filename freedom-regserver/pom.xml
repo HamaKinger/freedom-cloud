@@ -2,34 +2,38 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.freedom</groupId>
+
+    <parent>
+        <groupId>com.freedom</groupId>
+        <artifactId>freedom-cloud</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <groupId>com.freedom.regserver</groupId>
     <artifactId>freedom-regserver</artifactId>
     <version>1.0.0</version>
-    <name>freedom-regserver</name>
-    <description>freedom-regserver</description>
-    <properties>
-        <java.version>17</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>3.0.2</spring-boot.version>
-    </properties>
-    <dependencies>
 
+    <dependencies>
         <dependency>
-            <groupId>com.freedom</groupId>
+            <groupId>com.freedom.commom</groupId>
+            <artifactId>freedom-common</artifactId>
+            <version>${freedom.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.freedom.loglink</groupId>
+            <artifactId>freedom-loglink</artifactId>
+            <version>${freedom.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.freedom.regcore</groupId>
             <artifactId>freedom-regcore</artifactId>
-            <version>1.0.0</version>
+            <version>${freedom.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

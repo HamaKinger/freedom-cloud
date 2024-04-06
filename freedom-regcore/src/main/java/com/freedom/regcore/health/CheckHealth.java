@@ -6,12 +6,9 @@ import com.freedom.regcore.commons.ConstantUtils;
 import com.freedom.regcore.commons.Constants;
 import com.freedom.regcore.model.Instance;
 import com.freedom.regcore.proxy.InvocationHandlerProxy;
-import com.freedom.regcore.service.http.HttpClientService;
-import com.freedom.regcore.service.http.HttpClientServiceImpl;
+import com.freedom.regcore.http.HttpClientService;
+import com.freedom.regcore.http.HttpClientServiceImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 /**
  * @author freedom

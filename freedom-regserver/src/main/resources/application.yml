@@ -6,3 +6,12 @@ spring:
   application:
     name: freedom-regserver
 
+logging:
+  file:
+    name: /data/logs/${spring.application.name}.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] - [%X{TRACE_ID}] %-5level %logger{5}-%L : %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] - [%X{TRACE_ID}] %-5level %logger{5}-%L : %msg%n"
+  #整个项目包日志级别输出 TRACE < DEBUG < INFO < WARN < ERROR <FATAL
+  level:
+    root: info

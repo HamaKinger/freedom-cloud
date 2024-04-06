@@ -18,10 +18,7 @@ package com.freedom.producer.demos.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
@@ -38,10 +35,9 @@ public class BasicController {
     }
 
     // http://127.0.0.1:8080/user
-    @RequestMapping("/user")
+    @PostMapping("/user")
     @ResponseBody
     public User user () {
-        System.out.println("log =====> " );
         User user = new User();
         user.setName("theonefx");
         user.setAge(666);

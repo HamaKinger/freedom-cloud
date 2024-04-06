@@ -71,19 +71,8 @@ public class HeartbeatManager {
                 }
             }
         }
-
-//        for (List<Instance> heartbeatInfos : all.values()) {
-//            for(int i = 0;i < heartbeatInfos.size();i++) {
-//                HeartbeatStatus value = HeartbeatStatus.valueOf("UNAVAILABLE");
-//                Instance instance = heartbeatInfos.get(i);
-//                HeartbeatStatus status = instance.getStatus();
-//                if(heartbeatInfos.removeIf(a -> value== status)){
-//                    log.info("服务host:port->{}:{}不可用,即将被移除!!",instance.getHost(),instance.getPort());
-//                }
-//            }
-//
-//        }
     }
+
 
     public void start(){
         new Thread(()->{

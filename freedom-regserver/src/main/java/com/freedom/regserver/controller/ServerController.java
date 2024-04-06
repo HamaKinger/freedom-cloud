@@ -1,10 +1,10 @@
 package com.freedom.regserver.controller;
 
-import com.freedom.regcore.enums.ResultCodeEnum;
+import com.freedom.common.enums.ResultCodeEnum;
 import com.freedom.regcore.model.Instance;
 import com.freedom.regcore.service.ServiceRegistry;
-import com.freedom.regcore.vo.Result;
-import com.freedom.regcore.vo.ResultUtils;
+import com.freedom.common.vo.Result;
+import com.freedom.common.vo.ResultUtils;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

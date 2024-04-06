@@ -4,14 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.freedom.regcore.commons.ConstantUtils;
 import com.freedom.regcore.commons.Constants;
-import com.freedom.regcore.enums.ResultCodeEnum;
+import com.freedom.common.enums.ResultCodeEnum;
 import com.freedom.regcore.proxy.InvocationHandlerProxy;
 import com.freedom.regcore.service.ServiceRegistry;
 import com.freedom.regcore.excute.RegistryServer;
 import com.freedom.regcore.model.Instance;
-import com.freedom.regcore.service.http.HttpClientService;
-import com.freedom.regcore.service.http.HttpClientServiceImpl;
-import com.freedom.regcore.vo.Result;
+import com.freedom.regcore.http.HttpClientService;
+import com.freedom.regcore.http.HttpClientServiceImpl;
+import com.freedom.common.vo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -39,7 +39,7 @@ public class ServiceRegistryImpl extends RegistryServer implements ServiceRegist
             String post = proxy.execute(ConstantUtils.BASE_URL,Constants.SAVE_SERVER,json,Constants.POST);
             Result javaObject = JSON.toJavaObject(JSON.parseObject(post),Result.class);
             if(javaObject.getCode()== ResultCodeEnum.SUCCESS.getCode()){
-                log.info("服务{} 注册成功！",serviceName);
+                log.debug("服务{} 注册成功！",serviceName);
             }
         }catch(Exception e) {
             log.error("register-》JSON解析异常");
@@ -51,7 +51,7 @@ public class ServiceRegistryImpl extends RegistryServer implements ServiceRegist
         HttpClientService<String> httpClientService = new HttpClientServiceImpl<>();
         InvocationHandlerProxy<HttpClientService<String>> objectInvocationHandlerProxy = new InvocationHandlerProxy<>();
         HttpClientService<String> proxy = objectInvocationHandlerProxy.createProxy(httpClientService);
-        Result<List<Instance>> javaObject = null;
+
         try {
             String execute = proxy.execute(ConstantUtils.BASE_URL,Constants.GET_SERVER,serviceName,Constants.GET);
             return (List<Instance>) JSON.toJavaObject(JSON.parseObject(execute),Result.class);
@@ -69,7 +69,9 @@ public class ServiceRegistryImpl extends RegistryServer implements ServiceRegist
         try {
             String execute = proxy.execute(ConstantUtils.BASE_URL,Constants.GET_ALL,StringUtils.EMPTY,Constants.GET);
             if(!StringUtils.isEmpty(execute)){
-                return (Map<String,List<Instance>>) JSON.toJavaObject(JSON.parseObject(execute),Result.class);
+                JSONObject jsonObject = JSON.parseObject(execute);
+                Result javaObject = JSON.toJavaObject(jsonObject,Result.class);
+                return (Map<String,List<Instance>>) javaObject.getData();
             }
         }catch(Exception e) {
             log.error("getAll-》JSON解析异常");

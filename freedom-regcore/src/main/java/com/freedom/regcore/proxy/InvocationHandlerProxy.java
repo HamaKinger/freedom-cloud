@@ -38,7 +38,7 @@ public class InvocationHandlerProxy<T> implements InvocationHandler {
                 log.debug("stopwatch ---> null");
             }else {
                 long elapsed = stopwatch.elapsed(TimeUnit.MILLISECONDS);
-                log.info("方法:{} , 请求耗时:{} ms", method.getName(),elapsed);
+                log.debug("方法:{} , 请求耗时:{} ms", method.getName(),elapsed);
             }
         }finally {
             STOPWATCH.remove();

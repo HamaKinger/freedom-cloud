@@ -1,25 +1,19 @@
 package com.freedom.webapi.controller;
 
 import com.freedom.regcore.api.client.RegistryClient;
-import com.freedom.regcore.commons.ConstantUtils;
 import com.freedom.regcore.commons.Constants;
 import com.freedom.regcore.enums.BalanceEnum;
-import com.freedom.regcore.enums.ResultCodeEnum;
+import com.freedom.common.enums.ResultCodeEnum;
 import com.freedom.regcore.service.ServiceRegistry;
-import com.freedom.regcore.service.http.HttpClientService;
-import com.freedom.regcore.service.http.HttpClientServiceImpl;
+import com.freedom.regcore.http.HttpClientServiceImpl;
 import com.freedom.regcore.service.impl.ServiceRegistryImpl;
 import com.freedom.regcore.model.Instance;
-import com.freedom.regcore.utils.LoadBalance;
-import com.freedom.regcore.vo.Result;
-import com.freedom.regcore.vo.ResultUtils;
+import com.freedom.common.vo.Result;
+import com.freedom.common.vo.ResultUtils;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,8 +30,8 @@ public class Demo {
     @Resource
     private Environment environment ;
 
-    @Resource
-    private HttpClientService<Object> objectHttpClientService ;
+/*    @Resource
+    private HttpClientService<Object> objectHttpClientService ;*/
 
     @GetMapping("/getList")
     public Result<List<Instance>> getList(){
@@ -49,13 +43,14 @@ public class Demo {
     }
 
     @GetMapping("/get1")
-    public Result<String> getList1(){
-        return ResultUtils.buildResult(ResultCodeEnum.SUCCESS,"");
+    public Result<String> getList1(@RequestParam(name = "key") String key){
+        return ResultUtils.buildResult(ResultCodeEnum.SUCCESS,System.getProperty(key));
     }
 
     @PostMapping("/consumer")
     public Result<String> consumer(){
-        String execute = objectHttpClientService.execute("freedom-producer","user","",Constants.POST,BalanceEnum.RANDOM);
+        HttpClientServiceImpl<Object> objectHttpClientService1 = new HttpClientServiceImpl<>();
+        String execute = objectHttpClientService1.execute("freedom-producer","user",null,Constants.POST,BalanceEnum.RANDOM);
         return ResultUtils.buildResult(ResultCodeEnum.SUCCESS,execute);
     }
 }
