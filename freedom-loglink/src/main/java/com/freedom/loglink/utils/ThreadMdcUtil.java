@@ -8,14 +8,18 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
- * @Author: ZhangZengZeng
+ * @author: freedom
  * @Date: 2023/3/31 16:30
  */
 public final class ThreadMdcUtil {
 
 
 
-    // 获取唯一性标识
+
+    /**
+     * 获取唯一性标识
+     * @return
+     */
     public static String generateTraceId() {
         return RandomStringUtils.randomAlphanumeric(8);
     }

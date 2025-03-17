@@ -10,6 +10,21 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
 public @interface LogLink {
+    /**
+     * 描述
+     * @return
+     */
     String value() default "";
+
+    /**
+     * 方法名
+     * @return
+     */
     String methodName() default "" ;
+
+    /**
+     * 前缀标识
+     * @return
+     */
+    String prefix() default "";
 }

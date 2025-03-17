@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 配置自定义拦截器
- * @Author: zhangzengzeng
+ * @author: freedom
  * @Date: 2021/6/23 15:54
  */
 @Configuration
